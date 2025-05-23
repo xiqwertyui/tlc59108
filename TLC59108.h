@@ -179,7 +179,7 @@ public:
 
 	struct ERROR
 	{
-		static const uint8_t EINVAL = 2;
+		static const uint8_t INVALID_ARGUMENT = 2;
 	};
 
 public:
@@ -187,7 +187,7 @@ public:
 	static void setDefaultI2C(TwoWire i2c_default);
 
 	// creates an instance managing drivers on the specified interface and address
-	TLC59108(TwoWire i2c, const byte i2c_address);
+	TLC59108(TwoWire* i2c, const byte i2c_address);
 
 	// creates an instance managing drivers on the specified address with the default interface
 	TLC59108(const byte i2c_address);
@@ -223,7 +223,7 @@ public:
 
 private:
 	static TwoWire i2c_default;
-	mutable TwoWire i2c;
+	TwoWire* i2c;
 	byte addr;
 
 };
